@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="/default/home">
+   <th:block layout:fragment="header">
+      <title>New Activity</title>
+      <link rel="stylesheet" href="/css/parsley.css" th:href="@{/css/parsley.css}" />
+      <script src="/js/parsley.min.js" th:src="@{/js/parsley.min.js}"></script>
+   </th:block>
+   
+   <th:block class="layout_fragment" layout:fragment="content">
+      <div class="error_box"></div>
+      <form id="create_activity" name="create_activity" method="post" action="/maintenanceactivities/create" role="form" data-parsley-validate="">
+         <div class="form-group">
+            <label for="name">Activity Name</label>
+            <textarea rows="1" class="form-control" id="activityname" name="activityname" required="required" data-parsley-errors-messages-disabled=""></textarea>
+         </div>
+         <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+      </form>
+   </th:block>
+</html>

@@ -1,0 +1,53 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="/default/home">
+   <th:block layout:fragment="header">
+      <title>Edit Maintenance Session</title>
+      <link rel="stylesheet" href="/css/parsley.css" th:href="@{/css/parsley.css}" />
+      <link rel="stylesheet" href="/css/bootstrap-datepicker3.min.css" th:href="@{/css/bootstrap-datepicker3.min.css}" />
+      <script src="/js/bootstrap-datepicker.min.js" th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+      <script src="/js/parsley.min.js" th:src="@{/js/parsley.min.js}"></script>
+   </th:block>
+   
+   <th:block layout:fragment="content">
+      <form id="edit_maintenancesession" name="edit_maintenancesession" method="post" action="/maintenancesessions/update" role="form" data-parsley-validate="">
+         <div class="form-group">			
+            <label for="startdate">Start Date</label>
+            <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-orientation="bottom">
+               <input type="text" class="form-control" id="startdate" name="startdate" th:value="${maintenancesession.startDate}" required="required" data-parsley-errors-messages-disabled=""></input>
+               <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-th"></span>
+               </div>
+            </div>
+            <label for="enddate">End Date</label>
+            <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-orientation="bottom">
+               <input type="text" class="form-control" id="enddate" name="enddate" th:value="${maintenancesession.endDate}" required="required" data-parsley-errors-messages-disabled=""></input>
+               <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-th"></span>
+               </div>
+            </div>
+            <label for="mileage">Session Mileage</label>
+            <textarea rows="1" class="form-control" name="mileage" th:text="${maintenancesession.mileage}" required="required" data-parsley-errors-messages-disabled=""></textarea>
+            <label for="completed">Complete</label>
+            <select class="form-control" id="completed" name="completed" required="required" data-parsley-errors-messages-disabled="">
+               <option th:each="complete : ${completed}" th:value="${complete}" th:text="${complete}"></option>
+            </select>
+			<label for="activityname">Activity Name</label>
+            <select class="form-control" id="activityname" name="activityname" required="required" data-parsley-errors-messages-disabled="">
+               <option th:each="maintenanceactivity : ${maintenanceactivities}" th:value="${maintenanceactivity.id}" th:text="${maintenanceactivity.activityName}"></option>
+            </select>
+            <label for="activitynote">Activity Note</label>
+            <textarea rows="3" class="form-control" name="activitynote" th:text="${maintenancesession.activityNote}" required="required" data-parsley-errors-messages-disabled=""></textarea>
+           	<label for="vehicle">Vehicle</label>
+            <select class="form-control" id="vehicle" name="vehicle" required="required" data-parsley-errors-messages-disabled="">
+               <option th:each="vehicle : ${vehicles}" th:value="${vehicle.id}" th:text="${vehicle.make}"></option>
+            </select>
+            <label for="mechanic">Mechanic</label>
+            <select class="form-control" id="mechanic" name="mechanic" required="required" data-parsley-errors-messages-disabled="">
+               <option th:each="mechanic : ${mechanics}" th:value="${mechanic.id}" th:text="${mechanic.firstName}"></option>
+            </select>
+            <input type="hidden" th:rows="1" class="form-control" name="id" th:value="${maintenancesession.id}"/>
+         </div>
+         <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+      </form>
+   </th:block>
+   
+</html>

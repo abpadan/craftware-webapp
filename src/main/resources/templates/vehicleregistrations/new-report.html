@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="/default/home">
+   <th:block layout:fragment="header">
+      <title>Vehicle Registration Report</title>
+      <link rel="stylesheet" href="/css/parsley.css" th:href="@{/css/parsley.css}" />
+      <link rel="stylesheet" href="/css/bootstrap-datepicker3.min.css" th:href="@{/css/bootstrap-datepicker3.min.css}" />
+      <script src="/js/bootstrap-datepicker.min.js" th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+      <script src="/js/parsley.min.js" th:src="@{/js/parsley.min.js}"></script>
+   </th:block>
+   
+   <th:block class="layout_fragment" layout:fragment="content">
+      <div class="error_box"></div>
+      <form id="create_vehicleregistrationreport" name="create_vehicleregistrationreport" method="post" action="/vehicleregistrations/report/create" role="form" data-parsley-validate="">
+         <div class="form-group">
+            <label for="registrationstartdate">Registration Start Date</label>
+            <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-orientation="bottom">
+               <input type="text" class="form-control" id="registrationstartdate" name="registrationstartdate" required="required" data-parsley-errors-messages-disabled=""></input>
+               <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-th"></span>
+               </div>
+            </div>
+            <label for="registrationenddate">Registration End Date</label>
+            <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-orientation="bottom">
+               <input type="text" class="form-control" id="registrationenddate" name="registrationenddate" required="required" data-parsley-errors-messages-disabled=""></input>
+               <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-th"></span>
+               </div>
+            </div>
+            <label for="registrationexpirationstartdate">Registration Expiration Start Date</label>
+            <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-orientation="bottom">
+               <input type="text" class="form-control" id="registrationexpirationstartdate" name="registrationexpirationstartdate" required="required" data-parsley-errors-messages-disabled=""></input>
+               <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-th"></span>
+               </div>
+            </div>
+            <label for="registrationexpirationenddate">Registration Expiration End Date</label>
+            <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-orientation="bottom">
+               <input type="text" class="form-control" id="registrationexpirationenddate" name="registrationexpirationenddate" required="required" data-parsley-errors-messages-disabled=""></input>
+               <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-th"></span>
+               </div>
+            </div>
+            <label for="vehicle">Vehicle</label>
+            <select class="form-control" id="vehicle" name="vehicle" required="required" data-parsley-errors-messages-disabled="">
+               <option th:each="vehicle : ${vehicles}" th:value="${vehicle.id}" th:text="${vehicle.make}"></option>
+            </select>
+         </div>
+         <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+      </form>
+   </th:block>
+   
+</html>

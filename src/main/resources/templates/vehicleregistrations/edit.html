@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="/default/home">
+   <th:block layout:fragment="header">
+      <title>Edit Vehicle Registration</title>
+      <link rel="stylesheet" href="/css/parsley.css" th:href="@{/css/parsley.css}" />
+      <link rel="stylesheet" href="/css/bootstrap-datepicker3.min.css" th:href="@{/css/bootstrap-datepicker3.min.css}" />
+      <script src="/js/bootstrap-datepicker.min.js" th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+      <script src="/js/parsley.min.js" th:src="@{/js/parsley.min.js}"></script>
+   </th:block>
+   
+   <th:block layout:fragment="content">
+      <form id="edit_vehicleregistration" name="edit_vehicleregistration" method="post" action="/vehicleregistrations/update" role="form" data-parsley-validate="">
+         <div class="form-group">			
+ 			<label for="registrationdate">Registration Date</label>
+            <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-orientation="bottom">
+               <input type="text" class="form-control" id="registrationdate" name="registrationdate" th:value="${vehicleregistration.registrationDate}" required="required" data-parsley-errors-messages-disabled=""></input>
+               <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-th"></span>
+               </div>
+            </div>
+            <label for="registrationexpirationDate">Registration Expiration Date</label>
+            <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-orientation="bottom">
+               <input type="text" class="form-control" id="registrationexpirationdate" name="registrationexpirationdate" th:value="${vehicleregistration.registrationExpirationDate}" required="required" data-parsley-errors-messages-disabled=""></input>
+               <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-th"></span>
+               </div>
+            </div>
+            <label for="registrationmileage">Registration Mileage</label>
+            <textarea rows="1" class="form-control" name="registrationmileage" th:text="${vehicleregistration.registrationMileage}" required="required" data-parsley-errors-messages-disabled=""></textarea>
+            <label for="registrationdocumentnumber">Registration Document Number</label>
+            <textarea rows="1" class="form-control" name="registrationdocumentnumber" th:text="${vehicleregistration.registrationDocumentNumber}" required="required" data-parsley-errors-messages-disabled=""></textarea>
+            <label for="vehicle">Vehicle</label>
+            <select class="form-control" id="vehicle" name="vehicle" required="required" data-parsley-errors-messages-disabled="">
+               <option th:each="vehicle : ${vehicles}" th:value="${vehicle.id}" th:text="${vehicle.make}"></option>
+            </select>
+            <input type="hidden" th:rows="1" class="form-control" name="id" th:value="${vehicleregistration.id}"/>
+         </div>
+         <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+      </form>
+   </th:block>
+   
+</html>

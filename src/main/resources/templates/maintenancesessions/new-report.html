@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="/default/home">
+   <th:block layout:fragment="header">
+      <title>Maintenance Session Report</title>
+      <link rel="stylesheet" href="/css/parsley.css" th:href="@{/css/parsley.css}" />
+      <link rel="stylesheet" href="/css/bootstrap-datepicker3.min.css" th:href="@{/css/bootstrap-datepicker3.min.css}" />
+      <script src="/js/bootstrap-datepicker.min.js" th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+      <script src="/js/parsley.min.js" th:src="@{/js/parsley.min.js}"></script>
+   </th:block>
+   
+   <th:block class="layout_fragment" layout:fragment="content">
+      <div class="error_box"></div>
+      <form id="create_maintenancesessionreport" name="create_maintenancesessionreport" method="post" action="/maintenancesessions/report/create" role="form" data-parsley-validate="">
+         <div class="form-group">
+            <label for="startdate">Maintenance Session Start Date</label>
+            <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-orientation="bottom">
+               <input type="text" class="form-control" id="startdate" name="startdate" required="required" data-parsley-errors-messages-disabled=""></input>
+               <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-th"></span>
+               </div>
+            </div>
+            <label for="enddate">Maintenance Session End Date</label>
+            <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-orientation="bottom">
+               <input type="text" class="form-control" id="enddate" name="enddate" required="required" data-parsley-errors-messages-disabled=""></input>
+               <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-th"></span>
+               </div>
+            </div>
+            <label for="vehicle">Vehicle</label>
+            <select class="form-control" id="vehicle" name="vehicle" required="required" data-parsley-errors-messages-disabled="">
+               <option th:each="vehicle : ${vehicles}" th:value="${vehicle.id}" th:text="${vehicle.make}"></option>
+            </select>
+            <label for="mechanic">Mechanic</label>
+            <select class="form-control" id="mechanic" name="mechanic" required="required" data-parsley-errors-messages-disabled="">
+               <option th:each="mechanic : ${mechanics}" th:value="${mechanic.id}" th:text="${mechanic.firstName}"></option>
+            </select>
+            <label for="maintenanceactivities">Maintenance Activity</label>
+            <select class="form-control" id="maintenanceactivities" name="maintenanceactivities" required="required" data-parsley-errors-messages-disabled="">
+               <option th:each="maintenanceactivity : ${maintenanceactivities}" th:value="${maintenanceactivity.id}" th:text="${maintenanceactivity.activityName}"></option>
+            </select>
+         </div>
+         <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+      </form>
+   </th:block>
+</html>

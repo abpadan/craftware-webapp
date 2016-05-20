@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="/default/home">
+   <th:block layout:fragment="header">
+      <title>Edit Vehicle</title>
+      <link rel="stylesheet" href="/css/parsley.css" th:href="@{/css/parsley.css}" />
+      <link rel="stylesheet" href="/css/bootstrap-datepicker3.min.css" th:href="@{/css/bootstrap-datepicker3.min.css}" />
+	  <script src="/js/bootstrap-datepicker.min.js" th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+      <script src="/js/parsley.min.js" th:src="@{/js/parsley.min.js}"></script>
+   </th:block>
+   
+   <th:block layout:fragment="content">
+      <form id="edit_vehicle" name="edit_vehicle" method="post" action="/vehicles/update" role="form" data-parsley-validate="">
+         <div class="form-group">
+            <label for="make">Make</label>
+            <textarea rows="1" class="form-control" name="make" th:text="${vehicle.make}" required="required" data-parsley-errors-messages-disabled=""></textarea>
+            <label for="model">Model</label>
+            <textarea rows="1" class="form-control" name="model" th:text="${vehicle.model}" required="required" data-parsley-errors-messages-disabled=""></textarea>
+            <label for="year">Year</label>
+            <textarea rows="1" class="form-control" name="year" th:text="${vehicle.year}" required="required" data-parsley-errors-messages-disabled=""></textarea>
+            <label for="color">Color</label>
+            <textarea rows="1" class="form-control" name="color" th:text="${vehicle.color}" required="required" data-parsley-errors-messages-disabled=""></textarea>
+            <label for="licenseplatenumber">License Plate Number</label>
+            <textarea rows="1" class="form-control" name="licenseplatenumber" th:text="${vehicle.licensePlateNumber}" required="required" data-parsley-errors-messages-disabled=""></textarea>
+            <label for="dotnumber">DOT Number</label>
+            <textarea rows="1" class="form-control" name="dotnumber" th:text="${vehicle.DOTNumber}" required="required" data-parsley-errors-messages-disabled=""></textarea>
+            <label for="purchasedate">Purchase Date</label>
+            <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-orientation="bottom">
+               <input type="text" class="form-control" id="purchasedate" name="purchasedate" th:value="${vehicle.purchaseDate}" required="required" data-parsley-errors-messages-disabled=""></input>
+               <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-th"></span>
+               </div>
+            </div>
+            <label for="purchasemileage">Purchase Mileage</label>
+            <textarea rows="1" class="form-control" name="purchasemileage" th:text="${vehicle.purchaseMileage}" required="required" data-parsley-errors-messages-disabled=""></textarea>
+            <label for="status">Status</label>
+            <select class="form-control" id="status" name="status" th:selected="${vehicle.status}" required="required" data-parsley-errors-messages-disabled="">
+               <option th:each="stat : ${status}" th:value="${stat}" th:text="${stat}"></option>
+            </select>
+            <input type="hidden" th:rows="1" class="form-control" name="id" th:value="${vehicle.id}"/>
+         </div>
+         <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+      </form>
+   </th:block>
+   
+</html>

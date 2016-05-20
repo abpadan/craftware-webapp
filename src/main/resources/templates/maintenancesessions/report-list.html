@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="/default/home">
+   <th:block layout:fragment="header">
+      <title>Maintenance Session Report</title>
+      <link rel="stylesheet" href="/css/bootstrap-table.css" th:href="@{/css/bootstrap-table.css}"/>
+      <script src="/js/bootstrap-table.js" th:src="@{/js/bootstrap-table.js}"></script>
+   </th:block>
+   
+   <th:block layout:fragment="content">
+      <table class="table table-striped" data-toggle="table" data-sort-name="startdate" data-sort-order="asc" data-search="true" data-show-toggle="true" data-show-columns="true" data-pagination="true">
+         <thead>
+            <tr>
+               <th data-field="startdate" data-sortable="true">Start Date</th>
+               <th data-field="enddate" data-sortable="true">End Date</th>
+               <th data-field="mileage" data-sortable="true">Mileage</th>
+               <th data-field="completed" data-sortable="true">Completed</th>
+               <th data-field="activityname" data-sortable="true">Activity Name</th>
+               <th data-field="activitynote" data-sortable="true">Activity Note</th>
+               <th data-field="vehicle" data-sortable="true">Vehicle</th>
+               <th data-field="mechanic" data-sortable="true">Mechanic</th>
+            </tr>
+         </thead>
+         <tbody> <!-- maintenanceactivities -->
+            <tr th:each="maintenancesession : ${maintenancesessions}">
+               <td class="startdate" th:text="${maintenancesession.startDate}"></td>
+               <td class="enddate" th:text="${maintenancesession.endDate}"></td>
+               <td class="mileage" th:text="${maintenancesession.mileage}"></td>
+               <td class="completed" th:text="${maintenancesession.completed}"></td>
+			   <td class="activityname" th:text="${maintenancesession.maintenanceActivity.activityName}"></td>
+			   <td class="activitynote" th:text="${maintenancesession.activityNote}"></td>
+               <td class="vehicle" th:text="${maintenancesession.vehicle.make}"></td>
+               <td class="mechanic" th:text="${maintenancesession.mechanic.firstName}"></td>
+            </tr>
+         </tbody>
+      </table>
+   </th:block>
+   
+</html>

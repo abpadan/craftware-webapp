@@ -1,0 +1,71 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="/default/home">
+   <th:block layout:fragment="header">
+      <title>Vehicle Inspection</title>
+      <link rel="stylesheet" href="/css/bootstrap-table.css" th:href="@{/css/bootstrap-table.css}"/>
+      <script src="/js/bootstrap-table.js" th:src="@{/js/bootstrap-table.js}"></script>
+   </th:block>
+   
+   <th:block layout:fragment="content">
+      <a class="btn btn-primary" href="/vehicleinspections/new">Add new vehicle inspection</a>
+      <a class="btn btn-primary" href="/vehicles/new">Add new vehicle</a>
+      <a class="btn btn-primary" href="/vehicleinspections/new/report">View vehicle inspection report</a>
+      <table class="table table-striped" data-toggle="table" data-sort-name="inspectiondocumentnumber" data-sort-order="asc" data-search="true" data-show-toggle="true" data-show-columns="true" data-pagination="true">
+         <thead>
+            <tr>
+               <th data-field="inspectiondocumentnumber" data-sortable="true">Inspection Document Number</th>
+               <th data-field="inspectionresult" data-sortable="true">Inspection Result</th>
+               <th data-field="inspectionmileage" data-sortable="true">Inspection Mileage</th>
+               <th data-field="inspectiondate" data-sortable="true">Inspection Date</th>
+               <th data-field="inspectionexpirationdate" data-sortable="true">Inspection Expiration Date</th>
+               <th data-field="vehicle" data-sortable="true">Vehicle</th>
+               <th data-field="delete">Delete</th>
+               <th data-field="edit">Edit</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr th:each="vehicleinspection : ${vehicleinspections}">
+               <td class="inspectiondocumentnumber" th:text="${vehicleinspection.inspectionDocumentNumber}"></td>
+               <td class="inspectionresult" th:text="${vehicleinspection.inspectionResult}"></td>
+               <td class="inspectionmileage" th:text="${vehicleinspection.inspectionMileage}"></td>
+               <td class="inspectiondate" th:text="${vehicleinspection.inspectionDate}"></td>
+               <td class="inspectionexpirationdate" th:text="${vehicleinspection.inspectionExpirationDate}"></td>
+               <td class="vehicle" th:text="${vehicleinspection.vehicle.make}"></td>
+               <td>
+                  <a class="btn btn-danger" data-toggle="modal" th:attr="data-target='#deleteModal'+${vehicleinspection.id}">
+                  <span class="fa-stack">
+                  <i class="glyphicon glyphicon-trash"></i>
+                  </span>
+                  </a>
+                  <div class="modal fade" th:id="deleteModal+${vehicleinspection.id}" tabindex="-1" role="dialog">
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                              </button>
+                              <h4 class="modal-title" id="myModalLabel">Delete</h4>
+                           </div>
+                           <div class="modal-body">
+                              <p>Are you sure you want to delete this vehicle inspection?</p>
+                           </div>
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                              <a th:attr="name=${vehicleinspection.inspectionDocumentNumber}" th:href="@{'/vehicleinspections/{id}/delete'(id=${vehicleinspection.id})}" class="delete"><button type="button" class="btn btn-primary">Delete</button></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </td>
+               <td>
+                  <a class="btn btn-primary" th:href="@{'/vehicleinspections/{id}/edit'(id=${vehicleinspection.id})}" th:attr="name=${vehicleinspection.inspectionDocumentNumber}">
+                  <span class="fa-stack">
+                  <i class="glyphicon glyphicon-edit"></i>
+                  </span>
+                  </a>	
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </th:block>
+   
+</html>

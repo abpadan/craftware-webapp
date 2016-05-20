@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="/default/home">
+   <th:block layout:fragment="header">
+      <title>Vehicle Registration</title>
+      <link rel="stylesheet" href="/css/bootstrap-table.css" th:href="@{/css/bootstrap-table.css}"/>
+      <script src="/js/bootstrap-table.js" th:src="@{/js/bootstrap-table.js}"></script>
+   </th:block>
+   
+   <th:block layout:fragment="content">
+      <table class="table table-striped" data-toggle="table" data-sort-name="registrationdate" data-sort-order="desc" data-search="true" data-show-toggle="true" data-show-columns="true" data-pagination="true">
+         <thead>
+            <tr>
+               <th data-field="inspectionstartdate" data-sortable="true">Inspection Start Date</th>
+               <th data-field="inspectionenddate" data-sortable="true">Inspection End Date</th>
+               <th data-field="inspectionexpirationstartdate" data-sortable="true">Inspection Expiration Start Date</th>
+               <th data-field="inspectionexpirationenddate" data-sortable="true">Inspection Expiration End Date</th>
+               <th data-field="vehicle" data-sortable="true">Vehicle</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr th:each="vehicleinspection : ${vehicleinspections}">
+               <td class="inspectionstartdate" th:text="${vehicleinspection.inspectionStartDate}"></td>
+               <td class="inspectionenddate" th:text="${vehicleinspection.inspectionEndDate}"></td>
+               <td class="inspectionexpirationstartdate" th:text="${vehicleinspection.inspectionExpirationStartDate}"></td>
+               <td class="inspectionexpirationenddate" th:text="${vehicleinspection.inspectionExpirationEndDate}"></td>
+               <td class="vehicle" th:text="${vehicleinspection.vehicle.make}"></td>
+            </tr>
+         </tbody>
+      </table>
+   </th:block>
+   
+</html>
