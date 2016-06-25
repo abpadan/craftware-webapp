@@ -17,7 +17,7 @@ public interface VehicleInspectionRepository extends JpaRepository<VehicleInspec
 
 	List<VehicleInspection> findVehicleInspectionsByVehicleAndUser(Vehicle vehicle, User user);
 
-	@Query(value = "SELECT * FROM vehicle_inspection vi WHERE vi.inspection_date BETWEEN :inspectionStartDate AND :inspectionEndDate AND vi.inspection_expiration_date BETWEEN :inspectionExpirationStartDate AND :inspectionExpirationEndDate AND vr.user_id = :userID AND vr.vehicle_id = :vehicleID", nativeQuery = true)
+	@Query(value = "SELECT * FROM vehicle_inspection vi WHERE vi.inspection_date BETWEEN :inspectionStartDate AND :inspectionEndDate AND vi.inspection_expiration_date BETWEEN :inspectionExpirationStartDate AND :inspectionExpirationEndDate AND vi.user_id = :userID AND vi.vehicle_id = :vehicleID", nativeQuery = true)
 	List<VehicleInspection> findVehicleInspectionsByUserAndBetweenDates(
 			@Param("inspectionStartDate") Date inspectionStartDate, @Param("inspectionEndDate") Date inspectionEndDate,
 			@Param("inspectionExpirationStartDate") Date inspectionExpirationStartDate,

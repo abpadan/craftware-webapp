@@ -2,6 +2,7 @@
    <th:block layout:fragment="header">
       <title>Vehicle Inspection</title>
       <link rel="stylesheet" href="/css/bootstrap-table.css" th:href="@{/css/bootstrap-table.css}"/>
+      <link rel="stylesheet" href="/css/modalstyle.css" th:href="@{/css/modalstyle.css}"/>
       <script src="/js/bootstrap-table.js" th:src="@{/js/bootstrap-table.js}"></script>
    </th:block>
    
@@ -17,7 +18,7 @@
                <th data-field="inspectionmileage" data-sortable="true">Inspection Mileage</th>
                <th data-field="inspectiondate" data-sortable="true">Inspection Date</th>
                <th data-field="inspectionexpirationdate" data-sortable="true">Inspection Expiration Date</th>
-               <th data-field="vehicle" data-sortable="true">Vehicle</th>
+               <th data-field="vehicle">Vehicle</th>
                <th data-field="delete">Delete</th>
                <th data-field="edit">Edit</th>
             </tr>
@@ -29,7 +30,64 @@
                <td class="inspectionmileage" th:text="${vehicleinspection.inspectionMileage}"></td>
                <td class="inspectiondate" th:text="${vehicleinspection.inspectionDate}"></td>
                <td class="inspectionexpirationdate" th:text="${vehicleinspection.inspectionExpirationDate}"></td>
-               <td class="vehicle" th:text="${vehicleinspection.vehicle.make}"></td>
+               <td class="vehicle">
+                  <a th:text="${vehicleinspection.vehicle.make}" data-toggle="modal" th:attr="data-target='#vehicleModal'+${vehicleinspection.id}"></a>
+                  <div class="modal fade" th:id="vehicleModal+${vehicleinspection.id}" tabindex="-1" role="dialog">
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                              </button>
+                              <h4 class="modal-title" id="myModalLabel">Vehicle Information</h4>
+                           </div>
+                           <div class="modal-body">
+                              <table class="inversetable table table-striped">
+                              	<tr>
+                              		<th>Make</th>
+                              		<td class="make" th:text="${vehicleinspection.vehicle.make}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>Model</th>
+                              		<td class="model" th:text="${vehicleinspection.vehicle.model}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>Year</th>
+                              		<td class="year" th:text="${vehicleinspection.vehicle.year}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>Color</th>
+                              		<td class="color" th:text="${vehicleinspection.vehicle.color}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>License Plate Number</th>
+                              		<td class="licenseplatenumber" th:text="${vehicleinspection.vehicle.licensePlateNumber}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>DOT Number</th>
+                              		<td class="dotnumber" th:text="${vehicleinspection.vehicle.DOTNumber}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>Purchase Date</th>
+                              		<td class="purchasedate" th:text="${vehicleinspection.vehicle.purchaseDate}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>Purchase Mileage</th>
+                              		<td class="purchasemileage" th:text="${vehicleinspection.vehicle.purchaseMileage}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>Status</th>
+                              		<td class="status" th:text="${vehicleinspection.vehicle.status}"></td>
+                              	</tr>
+                              </table>
+                           </div>
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </td>
                <td>
                   <a class="btn btn-danger" data-toggle="modal" th:attr="data-target='#deleteModal'+${vehicleinspection.id}">
                   <span class="fa-stack">

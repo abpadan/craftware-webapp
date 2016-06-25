@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +21,8 @@ public class User {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+	@Column(unique = true)
     private String username;
     private String password;
     
@@ -27,22 +30,22 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Mechanic> mechanics = new ArrayList<Mechanic>();
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Vehicle> vehicles = new ArrayList<Vehicle>();
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<VehicleInspection> vehicleInspections = new ArrayList<VehicleInspection>();
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<VehicleRegistration> vehicleRegistrations = new ArrayList<VehicleRegistration>();
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<MaintenanceSession> maintenanceSessions = new ArrayList<MaintenanceSession>();
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<MaintenanceActivity> maintenanceActivities = new ArrayList<MaintenanceActivity>();
 	
 	@Type(type = "org.hibernate.type.NumericBooleanType")
@@ -59,7 +62,7 @@ public class User {
     	this.role = user.getRole();
     }
     
-    public List<MaintenanceActivity> getMaintenanceActivities() {
+	public List<MaintenanceActivity> getMaintenanceActivities() {
 		return maintenanceActivities;
 	}
 

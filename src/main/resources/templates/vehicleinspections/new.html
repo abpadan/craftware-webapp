@@ -12,13 +12,13 @@
       <form id="create_vehicleinspection" name="create_vehicleinspection" method="post" action="/vehicleinspections/create" role="form" data-parsley-validate="">
          <div class="form-group">
             <label for="inspectiondocumentnumber">Inspection Document Number</label>
-            <textarea rows="1" class="form-control" name="inspectiondocumentnumber" required="required" data-parsley-errors-messages-disabled=""></textarea>
+            <textarea rows="1" class="form-control" name="inspectiondocumentnumber" required="required" data-parsley-errors-messages-disabled="" data-parsley-type="number"></textarea>
             <label for="inspectionresult">Inspection Result</label>
             <select class="form-control" id="inspectionresult" name="inspectionresult" required="required" data-parsley-errors-messages-disabled="">
                <option th:each="inspectionresult : ${inspectionresults}" th:value="${inspectionresult}" th:text="${inspectionresult}"></option>
             </select>
             <label for="inspectionmileage">Inspection Mileage</label>
-            <textarea rows="1" class="form-control" name="inspectionmileage" required="required" data-parsley-errors-messages-disabled=""></textarea>
+            <textarea rows="1" class="form-control" name="inspectionmileage" required="required" data-parsley-errors-messages-disabled="" data-parsley-type="number"></textarea>
             <label for="inspectiondate">Inspection Date</label>
             <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-orientation="bottom">
                <input type="text" class="form-control" id="inspectiondate" name="inspectiondate" required="required" data-parsley-errors-messages-disabled=""></input>
@@ -35,7 +35,7 @@
             </div>
             <label for="vehicle">Vehicle</label>
             <select class="form-control" id="vehicle" name="vehicle" required="required" data-parsley-errors-messages-disabled="">
-               <option th:each="vehicle : ${vehicles}" th:value="${vehicle.id}" th:text="${vehicle.make}"></option>
+               <option th:each="vehicle : ${vehicles}" th:value="${vehicle.id}" th:text="${vehicle.make} + ' | ' + ${vehicle.model} + ' | ' + ${vehicle.year} + ' | ' + ${vehicle.color}"></option>
             </select>
          </div>
          <button type="submit" id="submit" class="btn btn-primary">Submit</button>

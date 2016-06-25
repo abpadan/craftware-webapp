@@ -1,0 +1,12 @@
+a,
+a label {
+    cursor: pointer;
+}
+.inversetable {
+	border: 1px solid #F0F0F0;
+    border-collapse: collapse;
+}
+.inversetable th, .inversetable td {
+    padding: 5px;
+    text-align: left;
+}

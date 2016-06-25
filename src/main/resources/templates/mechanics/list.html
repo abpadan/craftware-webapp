@@ -25,7 +25,7 @@
                <td class="email" th:text="${mechanic.email}"></td>
                <td class="phonenumber" th:text="${mechanic.phoneNumber}"></td>
                <td>
-                  <a th:if="${mechanic.deleteFlag} == true" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#deleteModal'+${mechanic.id}">
+                  <a class="btn btn-danger" data-toggle="modal" th:attr="data-target='#deleteModal'+${mechanic.id}">
                   <span class="fa-stack">
                   <i class="glyphicon glyphicon-trash"></i>
                   </span>
@@ -40,7 +40,7 @@
                               <h4 class="modal-title" id="myModalLabel">Delete</h4>
                            </div>
                            <div class="modal-body">
-                              <p>Are you sure you want to delete this mechanic?</p>
+                              <p>Are you sure you want to delete this mechanic? This will delete Maintenance Sessions with this associated Mechanic.</p>
                            </div>
                            <div class="modal-footer">
                               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

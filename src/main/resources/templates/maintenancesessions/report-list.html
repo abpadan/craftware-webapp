@@ -19,7 +19,7 @@
                <th data-field="mechanic" data-sortable="true">Mechanic</th>
             </tr>
          </thead>
-         <tbody> <!-- maintenanceactivities -->
+         <tbody>
             <tr th:each="maintenancesession : ${maintenancesessions}">
                <td class="startdate" th:text="${maintenancesession.startDate}"></td>
                <td class="enddate" th:text="${maintenancesession.endDate}"></td>

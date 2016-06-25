@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="/default/home">
+   <th:block layout:fragment="header">
+      <title>New User</title>
+      <link rel="stylesheet" href="/css/parsley.css" th:href="@{/css/parsley.css}" />
+      <script src="/js/parsley.min.js" th:src="@{/js/parsley.min.js}"></script>
+   </th:block>
+   
+   <th:block class="layout_fragment" layout:fragment="content">
+      <div class="error_box">
+      	<p th:text="${errors}"></p>
+      </div>
+      <form id="create_user" name="create_user" method="post" action="/createuser/new" role="form" data-parsley-validate="">
+         <div class="form-group">
+            <label for="name">Username</label>
+            <input class="form-control" id="username" name="username" required="required" data-parsley-errors-messages-disabled=""></input>
+            <label for="completed">Role</label>
+            <select class="form-control" id="role" name="role" required="required" data-parsley-errors-messages-disabled="">
+               <option th:each="role : ${roles}" th:value="${role.name}" th:text="${role.name}"></option>
+            </select>
+            <label for="name">Password</label>
+            <input class="form-control" id="password" name="password" required="required" type="password" data-parsley-equalto="#confirmpassword" data-parsley-errors-messages-disabled=""></input>
+            <label for="name">Confirm Password</label>
+            <input class="form-control" id="confirmpassword" name="confirmpassword" required="required" type="password" data-parsley-equalto="#password" data-parsley-errors-messages-disabled=""></input>
+         </div>
+         <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+      </form>
+   </th:block>
+</html>

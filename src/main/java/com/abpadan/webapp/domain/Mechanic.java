@@ -37,7 +37,7 @@ public class Mechanic {
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private boolean deleteFlag; 
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "mechanic", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<MaintenanceSession> maintenanceSessions = new ArrayList<MaintenanceSession>();
 	
 	@ManyToOne

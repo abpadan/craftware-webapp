@@ -26,12 +26,12 @@
                </div>
             </div>
             <label for="registrationmileage">Registration Mileage</label>
-            <textarea rows="1" class="form-control" name="registrationmileage" required="required" data-parsley-errors-messages-disabled=""></textarea>
+            <textarea rows="1" class="form-control" name="registrationmileage" required="required" data-parsley-errors-messages-disabled="" data-parsley-type="number"></textarea>
             <label for="registrationdocumentnumber">Registration Document Number</label>
-            <textarea rows="1" class="form-control" name="registrationdocumentnumber" required="required" data-parsley-errors-messages-disabled=""></textarea>
+            <textarea rows="1" class="form-control" name="registrationdocumentnumber" required="required" data-parsley-errors-messages-disabled="" data-parsley-type="number"></textarea>
             <label for="vehicle">Vehicle</label>
             <select class="form-control" id="vehicle" name="vehicle" required="required" data-parsley-errors-messages-disabled="">
-               <option th:each="vehicle : ${vehicles}" th:value="${vehicle.id}" th:text="${vehicle.make}"></option>
+               <option th:each="vehicle : ${vehicles}" th:value="${vehicle.id}" th:text="${vehicle.make} + ' | ' + ${vehicle.model} + ' | ' + ${vehicle.year} + ' | ' + ${vehicle.color}"></option>
             </select>
          </div>
          <button type="submit" id="submit" class="btn btn-primary">Submit</button>

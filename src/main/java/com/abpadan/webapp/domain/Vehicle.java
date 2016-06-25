@@ -67,13 +67,13 @@ public class Vehicle {
 		this.user = user;
 	}
 	
-	@OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<MaintenanceSession> maintenanceSessions; 
 	
-	@OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<VehicleInspection> vehicleInspectionSessions; 
 
-	@OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<VehicleRegistration> vehicleRegistrationSessions; 
 	
 	public List<VehicleRegistration> getVehicleRegistrationSessions() {

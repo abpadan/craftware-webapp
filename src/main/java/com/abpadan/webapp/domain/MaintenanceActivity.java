@@ -25,7 +25,7 @@ public class MaintenanceActivity {
 	@Size(min = 1)
 	private String activityName;
 	
-	@OneToMany(mappedBy = "maintenanceActivity", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "maintenanceActivity", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<MaintenanceSession> maintenanceSessions = new ArrayList<MaintenanceSession>();
 
 	@ManyToOne

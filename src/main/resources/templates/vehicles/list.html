@@ -35,7 +35,7 @@
                <td class="purchasemileage" th:text="${vehicle.purchaseMileage}"></td>
                <td class="status" th:text="${vehicle.status}"></td>
                <td>
-                  <a th:if="${vehicle.deleteFlag} == true" class="btn btn-danger" data-toggle="modal" th:attr="data-target='#deleteModal'+${vehicle.id}">
+                  <a class="btn btn-danger" data-toggle="modal" th:attr="data-target='#deleteModal'+${vehicle.id}">
                   <span class="fa-stack">
                   <i class="glyphicon glyphicon-trash"></i>
                   </span>
@@ -50,7 +50,7 @@
                               <h4 class="modal-title" id="myModalLabel">Delete</h4>
                            </div>
                            <div class="modal-body">
-                              <p>Are you sure you want to delete this vehicle?</p>
+                              <p>Are you sure you want to delete this vehicle? This will also delete Maintenance Sessions, Vehicle Inspections and Vehicle Registrations with this associated vehicle.</p>
                            </div>
                            <div class="modal-footer">
                               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

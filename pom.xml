@@ -4,6 +4,7 @@
 
 	<groupId>com.abpadan.craftware-webapp</groupId>
 	<artifactId>craftware-webapp</artifactId>
+	<packaging>war</packaging>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -13,6 +14,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+    	<start-class>com.abpadan.webapp.Application</start-class>
 	</properties>
 
 	<dependencies>
@@ -22,6 +24,12 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		    
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>

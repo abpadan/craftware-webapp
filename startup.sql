@@ -5,8 +5,8 @@ create database craftwarewebapp;
 insert into role (id, name) values (1, 'USER');
 insert into role (id, name) values (2, 'ADMIN');
 
-insert into user (id, password, username, role_id) values (1, 'password', 'albert', 1);
-insert into user (id, password, username, role_id) values (2, 'password', 'craftware', 2);
+insert into user (id, password, username, role_id) values (1, '$2a$10$K.hZKiXjnL9JTXmBSRCYFecNEc/u6bQYeQDnBgF72O6i2aJQDWrL.', 'albert', 1);
+insert into user (id, password, username, role_id) values (2, '$2a$10$q1fArpmExEB6IdHYcHr6Gurtt8A4c9uY6IyR0uinouEX7DyRjG7Le', 'craftware', 2);
 
 /* user with id = 1 */
 insert into vehicle (id, dotnumber, color, delete_flag, license_plate_number, make, model, purchase_date, purchase_mileage, status, year, user_id) values (1, 8186, 'Pink', true, '919891501-0', 'Ford', 'F-150', '2005-08-18', 162940, 3, '2011-06-11', 1);

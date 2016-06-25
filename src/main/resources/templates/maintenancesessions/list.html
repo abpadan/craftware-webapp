@@ -2,6 +2,7 @@
    <th:block layout:fragment="header">
       <title>Maintenance Session</title>
       <link rel="stylesheet" href="/css/bootstrap-table.css" th:href="@{/css/bootstrap-table.css}"/>
+      <link rel="stylesheet" href="/css/modalstyle.css" th:href="@{/css/modalstyle.css}"/>
       <script src="/js/bootstrap-table.js" th:src="@{/js/bootstrap-table.js}"></script>
    </th:block>
    
@@ -20,8 +21,8 @@
                <th data-field="completed" data-sortable="true">Completed</th>
                <th data-field="activityname" data-sortable="true">Activity Name</th>
                <th data-field="activitynote" data-sortable="true">Activity Note</th>
-               <th data-field="vehicle" data-sortable="true">Vehicle</th>
-                <th data-field="mechanic" data-sortable="true">Mechanic</th>
+               <th data-field="vehicle">Vehicle</th>
+               <th data-field="mechanic">Mechanic</th>
                <th data-field="delete">Delete</th>
                <th data-field="edit">Edit</th>
             </tr>
@@ -32,10 +33,104 @@
                <td class="enddate" th:text="${maintenancesession.endDate}"></td>
                <td class="mileage" th:text="${maintenancesession.mileage}"></td>
                <td class="completed" th:text="${maintenancesession.completed}"></td>
-			   <td class="activityname" th:text="${maintenancesession.maintenanceActivity.activityName}"></td>
-			   <td class="activitynote" th:text="${maintenancesession.activityNote}"></td>
-               <td class="vehicle" th:text="${maintenancesession.vehicle.make}"></td>
-               <td class="mechanic" th:text="${maintenancesession.mechanic.firstName}"></td>
+               <td class="activityname" th:text="${maintenancesession.maintenanceActivity.activityName}"></td>
+               <td class="activitynote" th:text="${maintenancesession.activityNote}"></td>
+               <td class="vehicle">
+                  <a th:text="${maintenancesession.vehicle.make}" data-toggle="modal" th:attr="data-target='#vehicleModal'+${maintenancesession.id}"></a>
+                  <div class="modal fade" th:id="vehicleModal+${maintenancesession.id}" tabindex="-1" role="dialog">
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                              </button>
+                              <h4 class="modal-title" id="myModalLabel">Vehicle Information</h4>
+                           </div>
+                           <div class="modal-body">
+                              <table class="inversetable table table-striped">
+                              	<tr>
+                              		<th>Make</th>
+                              		<td class="make" th:text="${maintenancesession.vehicle.make}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>Model</th>
+                              		<td class="model" th:text="${maintenancesession.vehicle.model}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>Year</th>
+                              		<td class="year" th:text="${maintenancesession.vehicle.year}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>Color</th>
+                              		<td class="color" th:text="${maintenancesession.vehicle.color}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>License Plate Number</th>
+                              		<td class="licenseplatenumber" th:text="${maintenancesession.vehicle.licensePlateNumber}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>DOT Number</th>
+                              		<td class="dotnumber" th:text="${maintenancesession.vehicle.DOTNumber}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>Purchase Date</th>
+                              		<td class="purchasedate" th:text="${maintenancesession.vehicle.purchaseDate}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>Purchase Mileage</th>
+                              		<td class="purchasemileage" th:text="${maintenancesession.vehicle.purchaseMileage}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>Status</th>
+                              		<td class="status" th:text="${maintenancesession.vehicle.status}"></td>
+                              	</tr>
+                              </table>
+                           </div>
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </td>
+               <td class="mechanic">
+                  <a th:text="${maintenancesession.mechanic.firstName}" data-toggle="modal" th:attr="data-target='#mechanicModal'+${maintenancesession.id}"></a>
+                  <div class="modal fade" th:id="mechanicModal+${maintenancesession.id}" tabindex="-1" role="dialog">
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                              </button>
+                              <h4 class="modal-title" id="myModalLabel">Vehicle Information</h4>
+                           </div>
+                           <div class="modal-body">
+                              <table class="inversetable table table-striped">
+                              	<tr>
+                              		<th>First Name</th>
+                              		<td class="firstname" th:text="${maintenancesession.mechanic.firstName}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>Last Name</th>
+                              		<td class="lastname" th:text="${maintenancesession.mechanic.lastName}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>Email</th>
+                              		<td class="email" th:text="${maintenancesession.mechanic.email}"></td>
+                              	</tr>
+                              	<tr>
+                              		<th>Phone Number</th>
+                              		<td class="phonenumber"  th:text="${maintenancesession.mechanic.phoneNumber}"></td>
+                              	</tr>
+                              </table>
+                           </div>
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </td>
                <td>
                   <a class="btn btn-danger" data-toggle="modal" th:attr="data-target='#deleteModal'+${maintenancesession.id}">
                   <span class="fa-stack">
