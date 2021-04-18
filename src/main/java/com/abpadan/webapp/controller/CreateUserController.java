@@ -2,8 +2,6 @@ package com.abpadan.webapp.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,29 +37,24 @@ public class CreateUserController {
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public String newUser(@Valid User newUser, BindingResult bindingResult, Model model,
-			@RequestParam("username") String username, @RequestParam("role") String userRole,
-			@RequestParam("password") String password, String confirmPassword) {
+	public String newUser(BindingResult bindingResult, Model model, @RequestParam("username") String username,
+			@RequestParam("role") String userRole, @RequestParam("password") String password, String confirmPassword) {
 		List<User> users = userService.getAllUsers();
-		boolean valid = true; 
 		for (User user : users) {
 			if (user.getUsername().equals(username)) {
 				model.addAttribute("roles", roleService.getAllRoles());
 				logger.error("User with " + username + " already exists! Please specify a different username");
-				valid = false;
 				return "createuser/new";
 			}
 		}
 
-		if (valid) {
-			User user = new User();
-			Role role = roleService.getRoleByName(userRole);
-			user.setUsername(username);
-			user.setRole(role);
-			user.setPassword(new BCryptPasswordEncoder().encode(password));
-			userService.saveUser(user);
-		}
-		
+		User user = new User();
+		Role role = roleService.getRoleByName(userRole);
+		user.setUsername(username);
+		user.setRole(role);
+		user.setPassword(new BCryptPasswordEncoder().encode(password));
+		userService.saveUser(user);
+
 		return "redirect:/users";
 	}
 
